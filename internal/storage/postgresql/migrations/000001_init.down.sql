@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS temperature;
+
+DROP TABLE IF EXISTS wind;

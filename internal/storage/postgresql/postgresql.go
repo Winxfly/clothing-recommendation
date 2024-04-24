@@ -10,7 +10,7 @@ import (
 )
 
 type Storage struct {
-	db *sql.DB
+	DB *sql.DB
 }
 
 func New(storagePath config.StoragePath) (*Storage, error) {
@@ -29,13 +29,13 @@ func New(storagePath config.StoragePath) (*Storage, error) {
 		return nil, fmt.Errorf("%s: %w:", op, err)
 	}
 
-	return &Storage{db: db}, nil
+	return &Storage{DB: db}, nil
 }
 
 func (s *Storage) GetRecommendation(temperature int, wind int) (string, error) {
 	const op = "storage.postgresql.GetRecommendation"
 
-	stmt, err := s.db.Prepare("SELECT recommendation FROM temperature WHERE temperature = ?")
+	stmt, err := s.DB.Prepare("SELECT recommendation FROM temperature WHERE temperature = ?")
 	if err != nil {
 		return "", fmt.Errorf("%s: prepare statement: %w", op, err)
 	}
@@ -49,7 +49,7 @@ func (s *Storage) GetRecommendation(temperature int, wind int) (string, error) {
 		return "", fmt.Errorf("%s: execute statement: %w", op, err)
 	}
 
-	stmt, err = s.db.Prepare("SELECT recommendation FROM wind WHERE wind_speed = ?")
+	stmt, err = s.DB.Prepare("SELECT recommendation FROM wind WHERE wind_speed = ?")
 	if err != nil {
 		return "", fmt.Errorf("%s: prepare statement: %w", op, err)
 	}
