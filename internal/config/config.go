@@ -20,11 +20,11 @@ type HTTPServer struct {
 }
 
 type StoragePath struct {
-	Username string `yaml:"username" env-default:""`
-	Password string `yaml:"password" env-default:""`
-	Host     string `yaml:"host" env-default:""`
-	Port     int    `yaml:"port" env-default:""`
-	Database string `yaml:"database" env-default:""`
+	Username string `yaml:"username" env-default:"prediction"`
+	Password string `yaml:"password" env-default:"prediction"`
+	Host     string `yaml:"host" env-default:"localhost"`
+	Port     int    `yaml:"port" env-default:"5433"`
+	Database string `yaml:"database" env-default:"prediction"`
 	SSLMode  string `yaml:"ssl_mode" env-default:"disable"`
 }
 

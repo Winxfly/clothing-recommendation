@@ -6,7 +6,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	_ "github.com/jackc/pgx/v5"
+	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
 type Storage struct {
@@ -15,7 +15,7 @@ type Storage struct {
 
 func New(storagePath config.StoragePath) (*Storage, error) {
 	const op = "storage.postgresql.New"
-	connString := fmt.Sprintf("postgresql://%s:%s@%s:%d/%s?%s",
+	connString := fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=%s",
 		storagePath.Username, storagePath.Password, storagePath.Host,
 		storagePath.Port, storagePath.Database, storagePath.SSLMode)
 
