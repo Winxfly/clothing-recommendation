@@ -11,6 +11,7 @@ type Config struct {
 	Env         string `yaml:"env" env-default:"local"`
 	StoragePath `yaml:"storage_path"`
 	HTTPServer  `yaml:"http_server"`
+	APILink     `json:"api_link"`
 }
 
 type HTTPServer struct {
@@ -20,12 +21,17 @@ type HTTPServer struct {
 }
 
 type StoragePath struct {
-	Username string `yaml:"username" env-default:"prediction"`
-	Password string `yaml:"password" env-default:"prediction"`
-	Host     string `yaml:"host" env-default:"localhost"`
-	Port     int    `yaml:"port" env-default:"5433"`
-	Database string `yaml:"database" env-default:"prediction"`
-	SSLMode  string `yaml:"ssl_mode" env-default:"disable"`
+	Username string `yaml:"username"`
+	Password string `yaml:"password"`
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	Database string `yaml:"database"`
+	SSLMode  string `yaml:"ssl_mode"`
+}
+
+type APILink struct {
+	Geocoding string `yaml:"geocoding_api" env-default:"https://geocoding-api.open-meteo.com/v1/search"`
+	Weather   string `yaml:"weather_api" env-default:"https://api.open-meteo.com/v1/forecast"`
 }
 
 func MustLoad() *Config {

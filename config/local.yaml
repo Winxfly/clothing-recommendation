@@ -2,11 +2,14 @@ env: "local" # local, dev, prod
 storage_path:
   username: "prediction"
   password: "prediction"
-  host: "localhost"
-  port: 5433
+  host: "postgres"
+  port: 5432
   database: "prediction"
   ssl_mode: "disable"
 http_server:
-  address: "localhost:8082"
+  address: "0.0.0.0:8082"
   timeout: 4s
   idle_timeout: 60s
+api_link:
+  geocoding_api: "https://geocoding-api.open-meteo.com/v1/search"
+  weather_api: "https://api.open-meteo.com/v1/forecast"
